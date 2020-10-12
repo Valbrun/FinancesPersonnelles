@@ -1,0 +1,130 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    {{dataInfo.name}} {{dataInfo.sno}}
+    <ion-buttons slot="start">
+      <ion-back-button icon="chevron-back" defaultHref="home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <ion-card class="ion-margin-bottom">
+      <ion-img src="assets/wallet1.png"></ion-img>
+      <ion-card-content>
+
+        <ion-row>
+          <ion-col size="12" class="ion-text-center ion-margin-bottom" (click)="cliquerPourModifier()">
+
+            <div id="InputBoard" *ngIf="budgetCond">
+              <ion-label position="fixed" color="dark">Budget : </ion-label>
+              <ion-input type="number" placeholder="exemple: 24000 " [(ngModel)]="finance.budget"></ion-input>
+            </div>
+
+            <div id="ShowBoard" *ngIf="!budgetCond && finance.budget != null" (click)="cliquerPourModifier()">
+              <ion-label position="fixed" color="dark">Votre budget est de : </ion-label>
+              <br>
+              <ion-card-title id="ShowBoardtitle" color="dark">{{finance.budget}}</ion-card-title>
+            </div>
+
+            <div id="InputBoard" *ngIf="!budgetCond && finance.budget === null ||finance.budget === 0">
+              <ion-card-title color="danger"> Votre budget ne peut etre nul </ion-card-title>
+            </div>
+
+            <div id="InputBoard" *ngIf="!budgetCond && finance.budget === null ">
+              <ion-card-title color="danger"> Vous n'avez pas entré de valeurs </ion-card-title>
+            </div>
+
+          </ion-col>
+
+          <ion-col size="12" class="ion-text-center">
+            <!-- slot="icon-only" -->
+            <ion-button fill="clear" color="primary" (click)="cliquerPourValider()">
+              <ion-icon name="checkbox-outline"></ion-icon>
+              Cliquer pour Valider
+            </ion-button>
+          </ion-col>
+
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+
+    <h6>Choisir le mois</h6> 
+    <ion-item lines="none" (click)="allShow()">
+      <ion-icon name="calendar-outline" slot="start"></ion-icon>
+      <ion-label>
+        <!-- <ion-datetime placeholder="Jan 2020" display-format="MMMM" ></ion-datetime> -->
+        {{mois}}
+      </ion-label>
+      <!--  <ion-icon name="chevron-forward" slot="end"></ion-icon> -->
+    </ion-item>
+
+
+    <h6>Liste de Dépenses par Catégories "{{mois}}"</h6>
+
+    <br>
+
+    <h6>Taxes</h6>
+    <ion-item lines="none">
+      <ion-icon name="cash-outline" slot="start"></ion-icon>
+
+      <ion-input type="number" placeholder=" exemple : 155$ " [(ngModel)]="taxes"></ion-input>
+
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+    <h6>Loyer</h6>
+    <ion-item lines="none">
+      <ion-icon name="home-outline" slot="start"></ion-icon>
+
+      <ion-input type="number" placeholder=" exemple : 155$ " [(ngModel)]="loyer"></ion-input>
+
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+    <h6>Nourriture</h6>
+    <ion-item lines="none">
+      <ion-icon name="fast-food-outline" slot="start"></ion-icon>
+
+      <ion-input type="number" placeholder=" exemple : 55$ " [(ngModel)]="nourriture"></ion-input>
+
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+    <h6>Transport</h6>
+    <ion-item lines="none">
+      <ion-icon name="bus-outline" slot="start"></ion-icon>
+
+      <ion-input type="number" placeholder=" exemple : 92$  " [(ngModel)]="transport"></ion-input>
+
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+
+    <h6>Communication</h6>
+    <ion-item lines="none">
+      <ion-icon name="call-outline" slot="start"></ion-icon>
+
+      <ion-input type="number" placeholder=" exemple : 95$  " [(ngModel)]="communication"></ion-input>
+
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+    <h6>Divers</h6>
+    <ion-item lines="none">
+      <ion-icon name="wallet-outline" slot="start"></ion-icon>
+
+      <ion-input type="number" placeholder=" exemple : 40$  " [(ngModel)]="divers"></ion-input>
+
+      <ion-icon name="chevron-forward" slot="end"></ion-icon>
+    </ion-item>
+
+    <br>
+
+    <ion-button expand="block" fill="outline" (click)="SaveUserData()">Cliquer ici pour Valider</ion-button>
+  </div>
+</ion-content>
+<div class="ion-padding">
+  <ion-badge color="dark" mode="ios">
+    par Woodsen Valbrun
+  </ion-badge>
+</div>
